@@ -21,6 +21,21 @@ class AccountInfo {
         : [];
   }
 
+  Map<String, dynamic> toJson() {
+    final data = <String, dynamic>{};
+    if (address != null) {
+      data['address'] = address;
+    }
+    if (blockCount != null) {
+      data['accountHeight'] = blockCount;
+    }
+    if (balanceInfoList != null) {
+      data['balanceInfoMap'] =
+          balanceInfoList!.map((item) => item.toJson()).toList();
+    }
+    return data;
+  }
+
   BigInt? znn() => getBalance(znnZts);
 
   BigInt? qsr() => getBalance(qsrZts);

@@ -19,6 +19,16 @@ class StakeList {
         list = (json['list'] as List)
             .map((entry) => StakeEntry.fromJson(entry))
             .toList();
+
+  Map<String, dynamic> toJson() {
+    final data = <String, dynamic>{};
+    data['totalAmount'] = totalAmount.toString();
+    data['totalWeightedAmount'] = totalWeightedAmount.toString();
+    data['count'] = count;
+    data['list'] = list.map((entry) => entry.toJson()).toList();
+
+    return data;
+  }
 }
 
 class StakeEntry {
@@ -44,4 +54,16 @@ class StakeEntry {
       expirationTimestamp: json['expirationTimestamp'],
       address: Address.parse(json['address']),
       id: Hash.parse(json['id']));
+
+  Map<String, dynamic> toJson() {
+    final data = <String, dynamic>{};
+    data['amount'] = amount.toString();
+    data['weightedAmount'] = weightedAmount.toString();
+    data['startTimestamp'] = startTimestamp;
+    data['expirationTimestamp'] = expirationTimestamp;
+    data['address'] = address.toString();
+    data['hash'] = id.toString();
+
+    return data;
+  }
 }
