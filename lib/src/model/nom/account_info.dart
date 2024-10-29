@@ -30,8 +30,12 @@ class AccountInfo {
       data['accountHeight'] = blockCount;
     }
     if (balanceInfoList != null) {
-      data['balanceInfoMap'] =
-          balanceInfoList!.map((item) => item.toJson()).toList();
+      final Iterable<String> keys =
+          balanceInfoList!.map((e) => e.token!.tokenStandard.toString());
+      final Iterable<Map<String, dynamic>> values =
+          balanceInfoList!.map((e) => e.toJson());
+      final Map<String, dynamic> finalMap = Map.fromIterables(keys, values);
+      data['balanceInfoMap'] = finalMap;
     }
     return data;
   }
