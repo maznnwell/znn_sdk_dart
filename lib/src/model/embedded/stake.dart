@@ -62,7 +62,7 @@ class StakeEntry {
     data['startTimestamp'] = startTimestamp;
     data['expirationTimestamp'] = expirationTimestamp;
     data['address'] = address.toString();
-    data['hash'] = id.toString();
+    data['id'] = id.toString();
 
     return data;
   }
