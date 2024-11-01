@@ -1,6 +1,7 @@
+import 'package:equatable/equatable.dart';
 import 'package:znn_sdk_dart/src/model/primitives.dart';
 
-class StakeList {
+class StakeList extends Equatable {
   BigInt totalAmount;
   BigInt totalWeightedAmount;
   int count;
@@ -29,9 +30,17 @@ class StakeList {
 
     return data;
   }
+
+  @override
+  List<Object?> get props => [
+        count,
+        list,
+        totalAmount,
+        totalWeightedAmount,
+      ];
 }
 
-class StakeEntry {
+class StakeEntry extends Equatable {
   final BigInt amount;
   final BigInt weightedAmount;
   final int startTimestamp;
@@ -66,4 +75,14 @@ class StakeEntry {
 
     return data;
   }
+
+  @override
+  List<Object?> get props => [
+        address,
+        amount,
+        expirationTimestamp,
+        id,
+        startTimestamp,
+        weightedAmount,
+      ];
 }
