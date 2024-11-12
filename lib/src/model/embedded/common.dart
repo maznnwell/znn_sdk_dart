@@ -1,6 +1,8 @@
 import 'package:znn_sdk_dart/src/model/primitives.dart';
+import 'package:equatable/equatable.dart';
 
-class UncollectedReward {
+
+class UncollectedReward extends Equatable{
   final Address address;
   final BigInt znnAmount;
   final BigInt qsrAmount;
@@ -9,9 +11,22 @@ class UncollectedReward {
       : address = Address.parse(json['address']),
         znnAmount = BigInt.parse(json['znnAmount']),
         qsrAmount = BigInt.parse(json['qsrAmount']);
+
+  Map<String, dynamic> toJson(){
+    final json = <String, dynamic>{};
+
+    json['address'] = address.toString();
+    json['znnAmount'] = znnAmount.toString();
+    json['qsrAmount'] = qsrAmount.toString();
+
+    return json;
+  }
+
+  @override
+  List<Object?> get props => <Object?>[address, znnAmount, qsrAmount];
 }
 
-class RewardHistoryEntry {
+class RewardHistoryEntry extends Equatable{
   final int epoch;
   final BigInt znnAmount;
   final BigInt qsrAmount;
@@ -26,9 +41,12 @@ class RewardHistoryEntry {
         'znnAmount': znnAmount.toString(),
         'qsrAmount': qsrAmount.toString(),
       };
+
+  @override
+  List<Object?> get props => <Object?>[epoch, znnAmount, qsrAmount];
 }
 
-class RewardHistoryList {
+class RewardHistoryList extends Equatable{
   int count;
   List<RewardHistoryEntry> list;
 
@@ -40,6 +58,9 @@ class RewardHistoryList {
 
   Map<String, dynamic> toJson() =>
       {'count': count, 'list': list.map((v) => v.toJson()).toList()};
+
+  @override
+  List<Object?> get props => <Object?>[count, list];
 }
 
 class VoteBreakdown {
