@@ -1,6 +1,7 @@
 import 'package:znn_sdk_dart/src/model/primitives.dart';
+import 'package:equatable/equatable.dart';
 
-class PillarInfo {
+class PillarInfo extends Equatable {
   static const int unknownType = 0;
   static const int legacyPillarType = 1;
   static const int regularPillarType = 2;
@@ -42,9 +43,12 @@ class PillarInfo {
     final data = <String, dynamic>{};
     data['name'] = name;
     data['rank'] = rank;
+    data['type'] = type;
     data['ownerAddress'] = ownerAddress.toString();
     data['producerAddress'] = producerAddress.toString();
     data['withdrawAddress'] = withdrawAddress.toString();
+    data['giveMomentumRewardPercentage'] = giveMomentumRewardPercentage;
+    data['giveDelegateRewardPercentage'] = giveDelegateRewardPercentage;
     data['isRevocable'] = isRevocable;
     data['revokeCooldown'] = revokeCooldown;
     data['revokeTimestamp'] = revokeTimestamp;
@@ -52,6 +56,26 @@ class PillarInfo {
     data['weight'] = weight.toString();
     return data;
   }
+
+  @override
+  List<Object?> get props => [
+    name,
+    rank,
+    type,
+    ownerAddress,
+    producerAddress,
+    withdrawAddress,
+    giveMomentumRewardPercentage,
+    giveDelegateRewardPercentage,
+    isRevocable,
+    revokeCooldown,
+    revokeTimestamp,
+    currentStats,
+    weight,
+    producedMomentums,
+    expectedMomentums,
+  ];
+
 }
 
 class PillarInfoList {
@@ -67,7 +91,7 @@ class PillarInfoList {
       {'count': count, 'list': list.map((v) => v.toJson()).toList()};
 }
 
-class PillarEpochStats {
+class PillarEpochStats extends Equatable{
   int producedMomentums;
   int expectedMomentums;
 
@@ -79,6 +103,9 @@ class PillarEpochStats {
         'producedMomentums': producedMomentums,
         'expectedMomentums': expectedMomentums
       };
+
+  @override
+  List<Object?> get props => <Object>[producedMomentums, expectedMomentums];
 }
 
 class PillarEpochHistory {
