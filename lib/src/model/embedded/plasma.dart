@@ -25,7 +25,6 @@ class FusionEntry {
   Address beneficiary;
   int expirationHeight;
   Hash id;
-  bool? isRevocable;
 
   FusionEntry(
       {required this.beneficiary,
